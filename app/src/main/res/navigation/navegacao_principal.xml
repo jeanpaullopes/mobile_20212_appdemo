@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegacao_principal"
+    app:startDestination="@id/fragmentOne">
+
+    <fragment
+        android:id="@+id/fragmentOne"
+        android:name="br.edu.uniritter.mobile.appdemo.ui.fragments.FragmentOne"
+        android:label="FragmentOne" >
+        <action
+            android:id="@+id/action_fragmentOne_to_fragmentTwo"
+            app:destination="@id/fragmentTwo"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentTwo"
+        android:name="br.edu.uniritter.mobile.appdemo.ui.fragments.FragmentTwo"
+        android:label="FragmentTwo" />
+    <fragment
+        android:id="@+id/fragmentThree"
+        android:name="br.edu.uniritter.mobile.appdemo.ui.fragments.FragmentThree"
+        android:label="FragmentThree" />
+</navigation>
