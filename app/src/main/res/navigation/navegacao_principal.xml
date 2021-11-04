@@ -11,9 +11,7 @@
         android:label="FragmentOne" >
         <action
             android:id="@+id/action_fragmentOne_to_fragmentTwo"
-            app:destination="@id/fragmentTwo"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@android:anim/slide_in_left" />
+            app:destination="@id/fragmentTwo" />
     </fragment>
     <fragment
         android:id="@+id/fragmentTwo"

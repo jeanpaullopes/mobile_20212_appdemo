@@ -10,6 +10,9 @@ import androidx.navigation.NavHostController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,11 +26,15 @@ import br.edu.uniritter.mobile.appdemo.ui.fragments.FragmentThree;
 import br.edu.uniritter.mobile.appdemo.ui.fragments.FragmentTwo;
 
 public class BottomNavigationActivity extends AppCompatActivity {
-
+    public static final String CHANNEL_ID = "Chanel123";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation);
+
+        //criação do canal de notificação
+        createNotificationChannel();
+
         BottomNavigationView bnv = findViewById(R.id.bottomNavigationView);
         NavHostFragment nhf  = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView3);
         NavController nhc = nhf.getNavController();
@@ -54,6 +61,9 @@ public class BottomNavigationActivity extends AppCompatActivity {
             }
         });
 
+
+
+
 /*
         if (savedInstanceState == null) {
             Fragment fragment = new FragmentOne();
@@ -71,5 +81,20 @@ public class BottomNavigationActivity extends AppCompatActivity {
         }
 */
 
+    }
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Canal App";//getString(R.string.channel_name);
+            String description = "Canal de demonstração de notificações";//getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }
